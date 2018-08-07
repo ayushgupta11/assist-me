@@ -1,0 +1,43 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Nav 1.0</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="main.css" />
+    </head>
+    <body>
+    	<div class="overlay">
+    		<div id="step-content"></div>
+    		<button id="back">Back</button>
+    		<button id="next">Next</button>
+    		<button id="done">Done</button>
+    	</div>
+    	<div class="container" id="demo">
+    		<button id="startDemo">Start Demo</button>
+    		<h1 data-step="1" data-content="This is step 1">Content</h1>
+    		<h1>Content</h1>
+    		<h1>Content</h1>
+    		<h1 data-step="3" data-content="This is step 3">Content</h1>
+    		<h1>Content</h1>
+    		<h1>Content</h1>
+    		<h1 data-step="2" data-content="This is step 2">Content</h1>
+    		<h1>Content</h1>
+    		<h1 data-step="4" data-content="This is step 4">Content</h1>
+    	</div>
+        <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script src="main.js"></script>
+  <script type="text/javascript">
+  	$(document).ready(function(){
+  		$("#startDemo").on('click', function(){
+  			$("#demo").start()
+  		})
+  	})
+  </script>
+    </body>
+</html>
