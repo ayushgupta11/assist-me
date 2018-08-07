@@ -18,3 +18,13 @@ body{
 #done{
 	display: none;
 }
+.big{
+	padding: 150px;
+}
+.btn{
+	background: #000;
+	color:white;
+	padding: 10px;
+	border:none;
+	border-radius: 5px; 
+}

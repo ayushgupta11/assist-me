@@ -10,7 +10,7 @@
     </head>
     <body>
     	<div class="container" id="demo">
-    		<button id="startDemo">Start Demo</button>
+    		<button id="startDemo" class="btn">Start Demo</button>
     		<h1 data-step="1" data-content="This is step 1" data-has-event=true>Content</h1>
     		<h1>Content</h1>
     		<h1>Content</h1>
@@ -19,7 +19,11 @@
     		<h1>Content</h1>
     		<h1 data-step="2" data-content="This is step 2">Content</h1>
     		<h1>Content</h1>
-    		<h1 data-step="4" data-content="This is step 4">Content</h1>
+			<h1 data-step="4" data-content="This is step 4">Content</h1>
+			<div class="big" data-step="5" data-content="This is step 5">
+				Hero Div
+				<button id="dummy">Click me</button>
+			</div>
     	</div>
         <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -30,7 +34,14 @@
   	$(document).ready(function(){
   		$("#startDemo").on('click', function(){
   			$("#demo").start()
-  		})
+		  })
+		  $("#dummy").on('click', function(){
+			  console.log("Dummy clicked")
+		  })
+		  jQuery('*:not(.nocapture)').on('click', function(e){
+    e.stopPropagation();
+    console.log('Element clicked', this); 
+})
   	})
   </script>
     </body>
