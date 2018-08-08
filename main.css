@@ -9,17 +9,8 @@ body{
 	justify-content: center;
 	align-items: center;
 }
-.show-step{
-	background:white;
-	opacity: 1;
-	z-index:3;
-	padding: 20px;
-}
-#done{
-	display: none;
-}
 .big{
-	padding: 150px;
+	padding: 100px;
 }
 .btn{
 	background: #000;
