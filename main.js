@@ -15,6 +15,7 @@
 				$(".done").css("display", "inline")
 				$(".next").attr("disabled", "true")
 				$(".skip").css("display","none")
+				$(".back").removeAttr("disabled")
 			}
 			else if(i==1){
 				$(".done").css("display", "none")
@@ -47,7 +48,7 @@
 			$(".show-step").removeClass("show-step")
 			$(".overlay").css("display", "block")
 			$(element).addClass("show-step")
-			$(".show-step").attr("style","background:white;opacity: 1;z-index:3;padding: 20px;border-radius: 5px;")
+			$(".step").attr("style","background: white;opacity: 1;z-index: 10;padding: 20px;border-radius: 5px;position: absolute;left: 0;right: 0;min-height: 90px;")
 			$("#step-content").html($(element).attr("data-content"))
 			$('html, body').animate({
 		        scrollTop: $(element).offset().top
@@ -63,7 +64,7 @@
 		var next = $("<button class='next'>Next</button>")
 		var back = $("<button class='back'>Back</button>")
 		var done = $("<button class='done'>Done</button>").css("display", "none")
-		var skip = $("<button class='skip'>Skip</button>")
+		var skip = $("<button class='skip'>Skip this Step</button>")
 		//var stepno = $("<div class='step-info' />")
 		//$(".step-info").attr('style','border-radius: 50%;padding: 5px;position:absolute;top:0;left:0;')
 		$(overlay).attr('style', 'position: fixed;display: none;width: 100%;height: 100%;top: 0;left: 0;right: 0;bottom: 0;	background-color: rgba(0,0,0,0.5);z-index: 2; cursor: pointer;')
@@ -75,6 +76,7 @@
 		$('body').prepend(overlay)
 		var elements = $("[data-step]")
 		sortList();
+		console.log(elements)
 		var index =0
 		if(params && params.hasOwnProperty('startFrom') && params.startFrom <= elements.length){
 			index = params.startFrom
@@ -100,11 +102,30 @@
 		})
 		$(".done").on("click", function(){
 			$(".overlay").css("display", "none")
+			$(".show-step").removeAttr("style")		
+			$(".show-step").removeClass("show-step")
 			$(".step").remove()
 		})
 		$(".skip").on("click", function(){
+			if(elements[index-1].hasAttribute('data-branch')){
+				var countSteps = $("[data-branch=" + index + "]").length
+				console.log(countSteps)
+				if(index<elements.length){
+					index += countSteps
+				}
+			}
+			else if(index>0 && index<elements.length){
+			index++;
+		}
+		if(index >= elements.length){
 			$(".overlay").css("display", "none")
+			$(".show-step").removeAttr("style")		
+			$(".show-step").removeClass("show-step")
 			$(".step").remove()
+		}
+		else{
+			showStep(index)
+		}
 		})
 		//Ends Here
 	}
