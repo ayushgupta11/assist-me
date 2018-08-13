@@ -46,6 +46,7 @@
 			buttonController(params);
 			$(".show-step").removeAttr("style")
 			$(".show-step").removeClass("show-step")
+			$(".step_no").text($(element).attr('data-step'))
 			$(".overlay").css("display", "block")
 			$(element).addClass("show-step")
 			$("#step-content").html($(element).attr("data-content"))
@@ -65,13 +66,15 @@
 		var back = $("<button class='back'>Back</button>")
 		var done = $("<button class='done'>Done</button>").css("display", "none")
 		var skip = $("<button class='skip'>Skip this Step</button>")
-		//var stepno = $("<div class='step-info' />")
-		//$(".step-info").attr('style','border-radius: 50%;padding: 5px;position:absolute;top:0;left:0;')
+		var skip_all = $("<button class='skip_all'>Skip Demo</button>")
+		var stepno = $("<span class='step_no' />")
 		$(step).append(content)
 		$(button_container).append(back)
 		$(button_container).append(next)
 		$(button_container).append(done)
 		$(button_container).append(skip)
+		$(button_container).append(skip_all)
+		$(step).append(stepno)
 		$(step).append(button_container)
 		$('body').prepend(overlay)
 		var elements = $("[data-step]")
@@ -106,10 +109,15 @@
 			$(".show-step").removeClass("show-step")
 			$(".step").remove()
 		})
+		$(".skip_all").on("click", function(){
+			$(".overlay").css("display", "none")
+			$(".show-step").removeAttr("style")		
+			$(".show-step").removeClass("show-step")
+			$(".step").remove()
+		})
 		$(".skip").on("click", function(){
 			if(elements[index-1].hasAttribute('data-branch')){
 				var countSteps = $("[data-branch=" + index + "]").length -1
-				console.log(countSteps)
 				if(index<elements.length){
 					index += countSteps
 				}
@@ -117,8 +125,7 @@
 			else if(index>0 && index<elements.length){
 			index++;
 		}
-		console.log(index)
-		if(index >= elements.length){
+		if(index > elements.length){
 			$(".overlay").css("display", "none")
 			$(".show-step").removeAttr("style")		
 			$(".show-step").removeClass("show-step")
