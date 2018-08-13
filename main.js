@@ -48,7 +48,6 @@
 			$(".show-step").removeClass("show-step")
 			$(".overlay").css("display", "block")
 			$(element).addClass("show-step")
-			$(".step").attr("style","background: white;opacity: 1;z-index: 10;padding: 20px;border-radius: 5px;position: absolute;left: 0;right: 0;min-height: 90px;")
 			$("#step-content").html($(element).attr("data-content"))
 			$('html, body').animate({
 		        scrollTop: $(element).offset().top
@@ -61,18 +60,19 @@
 		var overlay = $("<div class='overlay'/>")
 		var step = $("<div class='step' />")
 		var content = $("<div id='step-content'/>")
+		var button_container = $("<div class='tour_content'/>")
 		var next = $("<button class='next'>Next</button>")
 		var back = $("<button class='back'>Back</button>")
 		var done = $("<button class='done'>Done</button>").css("display", "none")
 		var skip = $("<button class='skip'>Skip this Step</button>")
 		//var stepno = $("<div class='step-info' />")
 		//$(".step-info").attr('style','border-radius: 50%;padding: 5px;position:absolute;top:0;left:0;')
-		$(overlay).attr('style', 'position: fixed;display: none;width: 100%;height: 100%;top: 0;left: 0;right: 0;bottom: 0;	background-color: rgba(0,0,0,0.5);z-index: 2; cursor: pointer;')
 		$(step).append(content)
-		$(step).append(back)
-		$(step).append(next)
-		$(step).append(done)
-		$(step).append(skip)
+		$(button_container).append(back)
+		$(button_container).append(next)
+		$(button_container).append(done)
+		$(button_container).append(skip)
+		$(step).append(button_container)
 		$('body').prepend(overlay)
 		var elements = $("[data-step]")
 		sortList();
@@ -108,7 +108,7 @@
 		})
 		$(".skip").on("click", function(){
 			if(elements[index-1].hasAttribute('data-branch')){
-				var countSteps = $("[data-branch=" + index + "]").length
+				var countSteps = $("[data-branch=" + index + "]").length -1
 				console.log(countSteps)
 				if(index<elements.length){
 					index += countSteps
@@ -117,6 +117,7 @@
 			else if(index>0 && index<elements.length){
 			index++;
 		}
+		console.log(index)
 		if(index >= elements.length){
 			$(".overlay").css("display", "none")
 			$(".show-step").removeAttr("style")		
