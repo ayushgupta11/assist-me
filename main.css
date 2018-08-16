@@ -19,7 +19,7 @@ body{
 	border:none;
 	border-radius: 5px; 
 }
-.step{
+.assist-step{
 	background: white;
 	opacity: 1;
 	z-index: 10;
@@ -30,9 +30,10 @@ body{
 	right: 0;
 	min-height: 90px;
 	width: 400px;
-	margin-top: 20px;
+	margin-top:20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-.overlay{
+.assist-overlay{
 	position: fixed;
 	display: none;
 	width: 100%;
@@ -45,7 +46,7 @@ body{
 	z-index: 2; 
 	cursor: pointer;
 }
-.tour_content button {
+.assist-tour_content button {
     padding: 10px 15px;
     border: 0;
     background: #163975;
@@ -56,24 +57,24 @@ body{
     margin-top: 20px;
     border-radius: 3px;
 }
-#step-content{
+.assist-tour_content button:disabled{
+	color: #000;
+	background: #d3d3d2;
+}
+#assist-step-content{
 	font-size: 16px;
     font-family: arial;
     font-weight: normal;
     line-height: 24px;
 }
-.show-step{
+.assist-show-step{
 	position: relative;
     background: white;
     z-index: 5;
-    padding: 10px;
+    padding: 5px;
     border-radius: 5px;
 }
-.tour_content button:disabled{
-	color: #000;
-	background: #d3d3d2;
-}
-.step_no{
+.assist-step_no{
 	position: absolute;
     top: -8px;
     left: -6px;

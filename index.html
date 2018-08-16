@@ -20,25 +20,29 @@
     		<div data-step="2" data-content="This is step 2"><h1>Content</h1></div>
     		<div><h1>Content</h1></div>
 			  <div data-step="4" data-content="This is step 4"><h1>Content</h1></div>
-			  <div class="big" data-step="5" data-content="This is step 5" data-branch="5">
+			  <div class="big" data-step="5" data-content="This is step 5" data-branch="5" data-has-event=true>
     				<h1>Hero Div</h1>
-    				<button id="dummy">Click me</button>
+    				<button class="dummy">Click me</button>
 			  </div>
         <div class="big" data-step="6" data-content="This is step 5" data-branch="5">
             <h1>Hero Div</h1>
-            <button id="dummy">Click me</button>
+            <button class="dummy">Click me</button>
         </div>
         <div class="big" data-step="7" data-content="This is step 5" data-branch="5">
             <h1>Hero Div</h1>
-            <button id="dummy">Click me</button>
+            <button class="dummy">Click me</button>
         </div>
         <div class="big" data-step="8" data-content="This is step 5" data-branch="5">
             <h1>Hero Div</h1>
-            <button id="dummy">Click me</button>
+            <button class="dummy">Click me</button>
         </div>
         <div class="big" data-step="9" data-content="This is step 5" data-branch="5">
             <h1>Hero Div</h1>
-            <button id="dummy">Click me</button>
+            <button class="dummy">Click me</button>
+        </div>
+        <div class="big" data-step="22" data-content="This is step 10">
+            <h1>Hero Div</h1>
+            <button class="dummy">Click me</button>
         </div>
     	</div>
         <script
@@ -51,13 +55,6 @@
   		$("#startDemo").on('click', function(){
   			$("#demo").start()
 		  })
-		  $("#dummy").on('click', function(){
-			  console.log("Dummy clicked")
-		  })
-		  jQuery('*:not(.nocapture)').on('click', function(e){
-    e.stopPropagation();
-    //console.log('Element clicked', this); 
-})
   	})
   </script>
     </body>
