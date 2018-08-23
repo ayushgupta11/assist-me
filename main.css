@@ -4,10 +4,29 @@ body{
 .container{
 	display: flex;
 	background:white;
-	padding: 100px;
 	flex-direction: column;
+}
+.nav
+{
+	display:flex;
+	flex-grow:1;
+	background: red;
+}
+.center{
+	display: flex;
+}
+.sidebar{
+	display: flex;
+	flex-direction: column;
+	background:green;
+	flex-grow: 1;
+}
+.body{
+	display: flex;
+	flex-direction: column;
+	background: blue;
+	flex-grow: 5;
 	justify-content: center;
-	align-items: center;
 }
 .big{
 	padding: 100px;
@@ -26,8 +45,6 @@ body{
 	padding: 20px;
 	border-radius: 5px;
 	position: absolute;
-	left: 0;
-	right: 0;
 	min-height: 90px;
 	width: 400px;
 	margin-top:20px;
@@ -73,6 +90,8 @@ body{
     z-index: 5;
     padding: 5px;
     border-radius: 5px;
+    animation-name: fade-in;
+	animation-duration: 1s;
 }
 .assist-step_no{
 	position: absolute;
@@ -84,4 +103,13 @@ body{
     border: 2px solid #000;
     color: white;
     font-size: 12px;
+    width: 4px;
+    height: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@keyframes fade-in{
+	0%{ background: none; }
+	100%{ background: white; }
 }

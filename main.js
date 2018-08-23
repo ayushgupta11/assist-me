@@ -3,14 +3,22 @@
 
 		//Functions
 		var sortList = function(){
-			var sorted = elements.sort(sort_li)
-		function sort_li(a, b){
-		    return ($(b).attr('data-step')) < ($(a).attr('data-step')) ? 1 : -1;    
+			var sorted = elements.sort(sortEventsByOrder)
+		function sortEventsByOrder(a,b) {
+			var startA = parseInt($(a).attr('data-step'));
+			var startB = parseInt($(b).attr('data-step'));	
+			return startA - startB;
 		}
 		}
 		var buttonController = function(params){
 			var i = params.index
 			$(".assist-skip").css("display","inline")
+			if(params.hasOwnProperty('hasEvent') && params.hasEvent){
+				$(".assist-next").css("display", "none")
+			}
+			else{
+				$(".assist-next").css("display", "inline")
+			}
 			if(i == elements.length){
 				$(".assist-done").css("display", "inline")
 				$(".assist-next").css("display","none")
@@ -27,12 +35,6 @@
 				$(".assist-next").removeAttr("disabled")
 				$(".assist-back").removeAttr("disabled")
 			}
-			if(params.hasOwnProperty('hasEvent') && params.hasEvent){
-				$(".assist-next").css("display", "none")
-			}
-			else{
-				$(".assist-next").css("display", "inline")
-			}
 		}
 		var showStep = function(i){
 			var element = elements[i-1]
@@ -40,21 +42,28 @@
 				index: i
 			}
 			var css = '';
-			$(element).append(step)
+			$("body").append(step)
 			if(element.hasAttribute('data-has-event')){
 				params['hasEvent'] = $(element).attr('data-has-event')
 			}
 			if(element.hasAttribute('data-css')){
-				css = $(element).attr('data-css')
+				css = JSON.parse($(element).attr('data-css'))
 			}
 			buttonController(params);
+			$(".assist-step").removeAttr('style')
 			$(".assist-show-step").removeAttr("style")
 			$(".assist-show-step").removeClass("assist-show-step")
 			$(".assist-step_no").text($(element).attr('data-step'))
 			$(".assist-overlay").css("display", "block")
 			$(element).addClass("assist-show-step")
-			if(css != ''){
-			$(".assist-show-step").attr('style', css)
+			var stepPosition = $(element).offset()
+			var stepHeight = $(element).height()
+			$(".assist-step").css({
+				top: stepPosition.top + stepHeight,
+				left: stepPosition.left
+			})
+			if(css){
+			$(".assist-step").css(css)
 		}
 			$("#assist-step-content").html($(element).attr("data-content"))
 			$('html, body').animate({
@@ -125,7 +134,8 @@
 		$(".assist-skip").on("click", function(){
 			if(elements[index-1].hasAttribute('data-branch') && elements[index-1].hasAttribute('data-has-event')){
 				var branch_index = $(".assist-show-step").attr("data-branch")
-				var countSteps = $("[data-branch=" + branch_index + "]").length
+				var countl = $(elements[index-1]).data('branch')
+				var countSteps = countl.length + 1
 				if(index<elements.length && countSteps > 0){
 					index += countSteps
 				}
